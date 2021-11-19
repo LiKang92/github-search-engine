@@ -3,8 +3,12 @@ import axios from 'axios'
 
 export default class Search extends Component {
   componentDidMount() {
-    axios(`/api1/search/users?q=likang92`).then((data) => {
-      console.log(data);
+    axios.get(`api/search/users?q=likang92`)
+    .then((data) => {
+      console.log(data)
+    },
+    (error) => {
+      console.log(error);
     })
   }
   
