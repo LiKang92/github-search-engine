@@ -6,9 +6,12 @@ export default class Search extends Component {
 
   search = () => {
     const {value} = this.inputKey
-    axios.get(`http://api/github.com/search/users?q=${value}`).then(
+    axios.get(`http://api.github.com/search/users?q=${value}`).then(
       (response) => {
-        console.log(response);
+        console.log(response.data);
+      },
+      (error) => {
+        console.log(error);
       }
     )
   }
