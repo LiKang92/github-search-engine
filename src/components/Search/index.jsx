@@ -5,13 +5,25 @@ export default class Search extends Component {
   
 
   search = () => {
+    const { updateSearch} = this.props
+    updateSearch({
+      isFirst:false, 
+      isLoading:true
+    })
     const {value} = this.inputKey
     axios.get(`http://api.github.com/search/users?q=${value}`).then(
       (response) => {
-        console.log(response.data);
+        updateSearch({
+          users:response.data.items,
+          isLoading:false
+        })
+
       },
       (error) => {
-        console.log(error);
+        updateSearch({
+          isLaoding:false,
+          error:error.message
+        })
       }
     )
   }
