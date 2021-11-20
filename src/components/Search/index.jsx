@@ -2,14 +2,15 @@ import React,{Component} from 'react'
 import axios from 'axios'
 
 export default class Search extends Component {
-  componentDidMount() {
-    axios.get(`api/search/users?q=likang92`)
-    .then((data) => {
-      console.log(data)
-    },
-    (error) => {
-      console.log(error);
-    })
+  
+
+  search = () => {
+    const {value} = this.inputKey
+    axios.get(`http://api/github.com/search/users?q=${value}`).then(
+      (response) => {
+        console.log(response);
+      }
+    )
   }
   
   render(){
@@ -17,7 +18,7 @@ export default class Search extends Component {
       <section className="jumbotron">
         <h3 className="jumbotron-heading">Search Github Users</h3>
         <div>
-          <input type="text" placeholder="enter the name you search" />&nbsp;<button>Search</button>
+          <input ref={c => this.inputKey = c} type="text" placeholder="enter the name you search" />&nbsp;<button onClick={this.search}>Search</button>
         </div>
       </section>
     )
